@@ -18,7 +18,19 @@ public class PaymentFactory {
 		return new IPaymentRate() {
 			@Override
 			public double pay(double salaryPerMonth) {
-				return 0;//todo 
+				// Tornar el salari amb una reducció del 15%
+				return salaryPerMonth*0.85;
+			}
+		};
+	}
+	
+	// Definir mètode createPaymentRateManager
+	public static IPaymentRate createPaymentRateManager() {
+		return new IPaymentRate() {
+			@Override
+			public double pay(double salaryPerMonth) {
+				// Tornar el salari amb un 10% més
+				return salaryPerMonth*1.1;
 			}
 		};
 	}

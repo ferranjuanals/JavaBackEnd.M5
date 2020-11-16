@@ -1,11 +1,16 @@
 package com.jobs.application;
 
+import java.util.List;
+
+import com.jobs.domain.AbsStaffMember;
 import com.jobs.domain.Employee;
+import com.jobs.domain.Volunteer;
 import com.jobs.persistence.EmployeeRepository;
 
 public class JobsController {
-
-	private EmployeeRepository repository;
+	
+	// Instanciar repository
+	private EmployeeRepository repository = new EmployeeRepository();
 	
 	public JobsController(){
 		
@@ -17,31 +22,42 @@ public class JobsController {
 	}
 	
 	public void createEmployee(String name, String address, String phone, double salaryPerMonth) throws Exception{		
-		Employee boss = new Employee(name, address, phone,  salaryPerMonth, PaymentFactory.createPaymentRateEmployee());
-		repository.addMember(boss);
+		Employee employee = new Employee(name, address, phone,  salaryPerMonth, PaymentFactory.createPaymentRateEmployee());
+		repository.addMember(employee);
 	}
-
+	
+	// Definir mètode createManagerEmployee
 	public void createManagerEmployee(String name, String address, String phone, double salaryPerMonth) throws Exception{
-		// TODO Auto-generated method stub
-		
+		Employee manager = new Employee(name, address, phone, salaryPerMonth, PaymentFactory.createPaymentRateManager());
+		repository.addMember(manager);
 	}
 
-
+	// Crear llista amb tots els membres de repository i passar el mètode pay() a cada un d'ells
 	public void payAllEmployeers() {
-		// TODO Auto-generated method stub
+		List<AbsStaffMember> allmembers = repository.getAllMembers();
+		for(AbsStaffMember member:allmembers) {
+			member.pay();
+		}
 	
 	}
 
+	// Crear llista amb tots els membres de repository, passar el mètode staffmember() a cada un d'ells,
+	// guardar cada String a un Array i després passar aquest Array a un sol String
 	public String getAllEmployees() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void createVolunteer(String string, String string2, String string3) {
-		// TODO Auto-generated method stub
-		
+		List<AbsStaffMember> allmembers = repository.getAllMembers();
+		String[] allnames = new String[allmembers.size()];
+		for(int i=0; i<allmembers.size(); i++) {
+			allnames[i] = allmembers.get(i).staffmember();
+		}
+		String printnames = String.join("\n", allnames);
+		return printnames;
 	}
 	
+	// Definir mètode createVolunteer
+	public void createVolunteer(String name, String address, String phone, String description) throws Exception{
+		Volunteer volunteer = new Volunteer(name, address, phone, description);
+		repository.addMember(volunteer);		
+	}
 	
 	
 }

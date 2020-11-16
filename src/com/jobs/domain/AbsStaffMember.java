@@ -26,4 +26,10 @@ public abstract class AbsStaffMember {
 	}
 
 	public abstract void pay();
+	
+	// Definir mètode "getter" staffmember que retorni un String amb el nom, adreça i telèfon
+	public String staffmember() {
+		String staffmember = "Name: " + name + "; Address: " + address + "; Phone: " + phone;
+		return staffmember;
+	}
 }

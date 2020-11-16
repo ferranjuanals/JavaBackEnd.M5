@@ -19,5 +19,12 @@ public class Employee extends AbsStaffMember {
 	public void pay() {
 		totalPaid=paymentRate.pay(salaryPerMonth);
 	}
+	
+	// Sobreescriure mètode "getter" staffmember afegint el salari i el total pagat
+	@Override
+	public String staffmember() {
+		String staffmember = super.staffmember() + "; Phone: " + phone + "; Salary: " + salaryPerMonth + "€; Paid: " + totalPaid + "€";
+		return staffmember;
+	}
 
 }
