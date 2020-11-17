@@ -23,7 +23,7 @@ public class Employee extends AbsStaffMember {
 	// Sobreescriure mètode "getter" staffmember afegint el salari i el total pagat
 	@Override
 	public String staffmember() {
-		String staffmember = super.staffmember() + "; Phone: " + phone + "; Salary: " + salaryPerMonth + "€; Paid: " + totalPaid + "€";
+		String staffmember = super.staffmember() + "; Salary: " + salaryPerMonth + "€; Paid: " + totalPaid + "€";
 		return staffmember;
 	}
 

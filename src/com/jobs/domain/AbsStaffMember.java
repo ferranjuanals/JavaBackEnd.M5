@@ -21,7 +21,7 @@ public abstract class AbsStaffMember {
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
-		id = COUNTER_MEMBERS;
+		id = COUNTER_MEMBERS; 
 		COUNTER_MEMBERS++;
 	}
 
